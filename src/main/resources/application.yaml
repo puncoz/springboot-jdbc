@@ -1,0 +1,11 @@
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/springboot-jdbc
+    username: postgres
+    password: 'postgres'
+
+server:
+  error:
+    include-binding-errors: always
+    include-message: always
