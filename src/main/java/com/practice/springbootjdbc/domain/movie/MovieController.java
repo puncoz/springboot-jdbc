@@ -2,7 +2,9 @@ package com.practice.springbootjdbc.domain.movie;
 
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping(path = "/api/v1/movies")
@@ -25,7 +27,14 @@ public class MovieController {
     }
 
     @PostMapping
-    public void addMovie(@RequestBody Movie movie) {
+    public void addMovie(@RequestBody Map<String, String> body) {
+        Movie movie = new Movie(
+                null,
+                body.get("name"),
+                null,
+                LocalDate.parse(body.get("released_date"))
+        );
+
         movieService.addMovie(movie);
     }
 

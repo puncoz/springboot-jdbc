@@ -7,10 +7,10 @@ public interface MovieDao {
 
     List<Movie> getMoviesList();
 
+    Optional<Movie> getMovie(int movieId);
+
     int createMovie(Movie movie);
 
     int deleteMovie(int movieId);
-
-    Optional<Movie> getMovie(int movieId);
 
 }

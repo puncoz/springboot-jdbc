@@ -17,21 +17,47 @@ public class MovieRepository implements MovieDao {
 
     @Override
     public List<Movie> getMoviesList() {
-        throw new UnsupportedOperationException("not implemented");
-    }
+        var sql = """
+                SELECT id, name, released_date
+                FROM movies
+                LIMIT 10;
+                """;
 
-    @Override
-    public int createMovie(Movie movie) {
-        throw new UnsupportedOperationException("not implemented");
-    }
-
-    @Override
-    public int deleteMovie(int movieId) {
-        throw new UnsupportedOperationException("not implemented");
+        return jdbcTemplate.query(sql, new MovieRowMapper());
     }
 
     @Override
     public Optional<Movie> getMovie(int movieId) {
-        throw new UnsupportedOperationException("not implemented");
+        String sql = """
+                SELECT id, name, released_date
+                FROM movies
+                WHERE id = ?
+                """;
+
+        return jdbcTemplate.query(sql, new MovieRowMapper(), movieId)
+                .stream()
+                .findFirst();
+    }
+
+    @Override
+    public int createMovie(Movie movie) {
+        String sql = """
+                INSERT INTO movies(name, released_date) VALUES (?, ?)
+                """;
+
+        return jdbcTemplate.update(
+                sql,
+                movie.name(), movie.releasedDate()
+        );
+    }
+
+    @Override
+    public int deleteMovie(int movieId) {
+        String sql = """
+                DELETE FROM movies
+                WHERE id = ?
+                """;
+
+        return jdbcTemplate.update(sql, movieId);
     }
 }

@@ -32,3 +32,5 @@ H
 src/main/http/movie.http,c/5/c503449bd88ee1de53a526edf73704a54f327514
 v
 Fsrc/main/java/com/practice/springbootjdbc/config/DataSourceConfig.java,3/9/3905200dbe9094309b4ff77a6bccd5f08ec9aec4
+z
+Jsrc/main/java/com/practice/springbootjdbc/domain/movie/MovieRowMapper.java,a/e/ae9704bb9c15fef7d7caf98adc2d04c579bfa3e5
